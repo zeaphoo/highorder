@@ -4,6 +4,9 @@
   "packageManager": "pnpm@9.0.0",
   "scripts": {
     "build:codemirror": "pnpm --filter @highorder/codemirror-hola build",
-    "test:hola-compiler": "pnpm --filter hola-compiler exec vitest run"
+    "test:hola-compiler": "pnpm --filter hola-compiler exec vitest run",
+    "dev:element": "pnpm --filter @highorder/webclient-element dev",
+    "build:element": "pnpm --filter @highorder/webclient-element build",
+    "test:element": "pnpm --filter @highorder/webclient-element test"
   }
 }
