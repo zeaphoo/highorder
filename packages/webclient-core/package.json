@@ -1,0 +1,22 @@
+{
+  "name": "@highorder/webclient-core",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Framework-free HighOrder client core: protocol, state, storage, i18n, render protocol",
+  "type": "module",
+  "license": "MIT",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "sideEffects": false,
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitest": "^0.34.6"
+  }
+}

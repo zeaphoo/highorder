@@ -1,0 +1,38 @@
+{
+  "name": "@highorder/webclient-react",
+  "version": "0.1.0",
+  "private": true,
+  "description": "HighOrder React client (Radix + Tailwind), consumable as a component or as an element renderer",
+  "type": "module",
+  "license": "MIT",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./style.css": "./src/style.css"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@highorder/webclient-core": "workspace:*",
+    "@radix-ui/react-dialog": "^1.1.15"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@highorder/webclient-element": "workspace:*",
+    "@vitejs/plugin-react": "^4.0.0",
+    "autoprefixer": "^10.4.27",
+    "jsdom": "^24.1.0",
+    "postcss": "^8.5.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwindcss": "^3.4.19",
+    "vite": "^5.0.0",
+    "vitest": "^0.34.6"
+  }
+}

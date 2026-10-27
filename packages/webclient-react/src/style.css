@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Theming contract. Everything is scoped under .ho-app (never :root) so an
+ * embedded instance cannot restyle the host page, and the host can restyle us
+ * through these custom properties.
+ */
+
+.ho-app {
+  --ho-font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --ho-font-size: 14px;
+  --ho-color-bg: #ffffff;
+  --ho-color-fg: #111827;
+  --ho-color-muted: #6b7280;
+  --ho-color-border: #e5e7eb;
+  --ho-color-accent: #2563eb;
+  --ho-radius: 8px;
+
+  box-sizing: border-box;
+  font-family: var(--ho-font-family);
+  font-size: var(--ho-font-size);
+  color: var(--ho-color-fg);
+  background: var(--ho-color-bg);
+}
+
+.ho-app[data-theme="dark"] {
+  --ho-color-bg: #111827;
+  --ho-color-fg: #f9fafb;
+  --ho-color-muted: #9ca3af;
+  --ho-color-border: #374151;
+  --ho-color-accent: #60a5fa;
+}
+
+@media (prefers-color-scheme: dark) {
+  .ho-app[data-theme="auto"] {
+    --ho-color-bg: #111827;
+    --ho-color-fg: #f9fafb;
+    --ho-color-muted: #9ca3af;
+    --ho-color-border: #374151;
+    --ho-color-accent: #60a5fa;
+  }
+}
+
+.ho-app *,
+.ho-app *::before,
+.ho-app *::after {
+  box-sizing: border-box;
+}
+
+@layer components {
+  .ho-card {
+    border: 1px solid var(--ho-color-border);
+    border-radius: var(--ho-radius);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ho-btn {
+    font: inherit;
+    padding: 4px 12px;
+    border: 1px solid var(--ho-color-border);
+    border-radius: var(--ho-radius);
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .ho-btn:hover {
+    border-color: var(--ho-color-accent);
+    color: var(--ho-color-accent);
+  }
+
+  .ho-muted {
+    color: var(--ho-color-muted);
+  }
+
+  .ho-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgb(0 0 0 / 0.45);
+  }
+
+  .ho-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 280px;
+    max-width: min(90vw, 420px);
+    padding: 20px;
+    border-radius: var(--ho-radius);
+    border: 1px solid var(--ho-color-border);
+    background: var(--ho-color-bg);
+    color: var(--ho-color-fg);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+}

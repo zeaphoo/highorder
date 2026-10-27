@@ -7,6 +7,13 @@
     "test:hola-compiler": "pnpm --filter hola-compiler exec vitest run",
     "dev:element": "pnpm --filter @highorder/webclient-element dev",
     "build:element": "pnpm --filter @highorder/webclient-element build",
-    "test:element": "pnpm --filter @highorder/webclient-element test"
+    "test:element": "pnpm --filter @highorder/webclient-element test",
+    "test:core": "pnpm --filter @highorder/webclient-core test",
+    "dev:react": "pnpm --filter @highorder/webclient-react dev",
+    "build:react": "pnpm --filter @highorder/webclient-react build",
+    "test:react": "pnpm --filter @highorder/webclient-react test",
+    "dev:webapp": "pnpm --filter @highorder/webapp dev",
+    "build:webapp": "pnpm --filter @highorder/webapp build",
+    "test": "pnpm test:core && pnpm test:react && pnpm test:element && pnpm test:hola-compiler"
   }
 }
