@@ -1,0 +1,19 @@
+/target
+**/*.rs.bk
+
+# Node
+node_modules/
+dist/
+
+# Local env / data
+.env
+.env.*
+!.env.example
+*.db
+*.db-shm
+*.db-wal
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
