@@ -484,6 +484,7 @@ formula: "every(meta.todos).done == true"
 ## 10. 相关文档
 
 - [language-spec.md](./language-spec.md)：语法
+- [expressions.md](./expressions.md)：表达式规范
 - [query-objects.md](./query-objects.md)：查询、表达式与模板对象
 - [ui-objects.md](./ui-objects.md)：界面对象
 - [namespace.md](./namespace.md)：命名空间

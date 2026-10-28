@@ -101,5 +101,6 @@ Card {
 ## 5. 相关文档
 
 - [language-spec.md](./language-spec.md)：语法
+- [expressions.md](./expressions.md)：表达式规范
 - [builtin-objects.md](./builtin-objects.md)：核心对象、数据对象、命令对象、内置函数
 - [query-objects.md](./query-objects.md)：查询与模板对象

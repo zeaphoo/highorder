@@ -12,6 +12,7 @@ Hola（HighOrder Language）是 HighOrder 平台的声明式应用描述语言�
 | 文档 | 内容 | 状态 |
 |---|---|---|
 | [language-spec.md](./language-spec.md) | 词法、对象、属性、列表、字面量、`{{ }}` 表达式 | 已实现语法 |
+| [expressions.md](./expressions.md) | 表达式入口、语法、优先级、语义、兼容规则 | 规范草案 |
 | [grammar.ebnf](./grammar.ebnf) / [grammar.peg](./grammar.peg) | 语法形式化描述 | 与实现同步维护 |
 | [namespace.md](./namespace.md) | 类型名中的命名空间（`System.String`） | 语法已实现，编译转换待完善 |
 | [builtin-objects.md](./builtin-objects.md) | 核心对象、数据模型、命令、事件与内置函数 | 运行时参考 |
@@ -22,7 +23,8 @@ Hola（HighOrder Language）是 HighOrder 平台的声明式应用描述语言�
 ## 阅读顺序
 
 1. 先读 `language-spec.md`，理解对象、属性和值。
-2. 再读 `builtin-objects.md`、`query-objects.md`、`ui-objects.md`，了解
+2. 读 `expressions.md`，理解 `{{ ... }}`、旧字符串表达式槽位和模板的区别。
+3. 再读 `builtin-objects.md`、`query-objects.md`、`ui-objects.md`，了解
    `Page`、`Modal`、`Query`、`Foreach`、`UpdateObject`、`Column`、`Button`
    等默认对象分别做什么。
 
@@ -32,7 +34,8 @@ Hola（HighOrder Language）是 HighOrder 平台的声明式应用描述语言�
 - **运行时对象**（`Page`、`Modal`、`Action`、`ObjectMeta` 等）由 HighOrder
   解释，名称通常从 PascalCase 编译为 kebab-case，例如 `ObjectMeta` →
   `object-meta`。
-- **表达式**写在 `{{ ... }}` 中，是纯计算，不包含语句。
+- **表达式**写在 `{{ ... }}` 中，是唯一规范入口，纯计算，不包含语句。
+  `Expr` 和 `Format` 是保留的内置对象/模板。
 - **逻辑/流程**当前用现有对象表达，例如 `Action`、`DataProcess`、`events`、
   `hooks`。函数/脚本化表示仍在设计中，尚未纳入本版文档。
 - **可序列化优先**：对象树应保持可 JSON 序列化、可分析、可视觉化编辑。
@@ -46,5 +49,5 @@ Hola（HighOrder Language）是 HighOrder 平台的声明式应用描述语言�
 - `NAMESPACE_FEATURE.md`：迁移为 `namespace.md`；
 - `examples/*.hola`：原样迁移。
 
-`builtin-objects.md`、`query-objects.md`、`ui-objects.md` 为新增文档。
-`README.en.md` 为英文版本。
+`expressions.md`、`builtin-objects.md`、`query-objects.md`、`ui-objects.md`
+为新增文档。`README.en.md` 为英文版本。

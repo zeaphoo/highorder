@@ -4,9 +4,9 @@
 > 查询与模板对象。核心对象、命令对象和内置函数见
 > [builtin-objects.md](./builtin-objects.md)。
 >
-> `Query.filter` 和 `Expr.expr` 是**字符串表达式**，沿用旧版运行时语法
-> （支持 `and` / `or` / `in` / `if ... else`）。它们与 `{{ ... }}` 不是同一套
-> 实现；统一表达式的工作尚未纳入本版文档。
+> `Query.filter` 是**字符串兼容槽位**；`Expr` 是**保留的内置表达式对象**。
+> 规范表达式入口是 `{{ ... }}`，统一表达式规范见
+> [expressions.md](./expressions.md)。
 
 ## 1. 查询、表达式与模板对象
 
@@ -88,11 +88,11 @@ Match {
 
 | 对象 | 属性 | 说明 |
 |---|---|---|
-| `Expr` | `expr` | 旧版字符串表达式，运行时解析 |
+| `Expr` | `expr` | 保留的内置表达式对象，特殊场景使用 |
 | `Format` | `format` | 字符串模板，如 `"{it.name}"` |
 | `DatetimeFormat` | `value`、`format` | 日期格式化，如 `YYYY-MM-DD` |
 
-新代码优先使用 `{{ ... }}`；`Expr` 用于兼容旧表达式节点。
+新代码优先使用 `{{ ... }}`；`Expr` 保留用于需要显式表达式节点的特殊场景。
 
 ### 1.6 DataFormat / DataFilter / DataExtract
 
@@ -125,5 +125,6 @@ Locals {
 ## 2. 相关文档
 
 - [language-spec.md](./language-spec.md)：语法与 `{{ }}` 表达式
+- [expressions.md](./expressions.md)：表达式规范与兼容规则
 - [builtin-objects.md](./builtin-objects.md)：核心对象、数据对象、命令对象、内置函数
 - [ui-objects.md](./ui-objects.md)：界面对象

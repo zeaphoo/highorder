@@ -15,6 +15,7 @@ currently written in Chinese; this README is the English entry point.
 | Document | Contents | Status |
 |---|---|---|
 | [language-spec.md](./language-spec.md) | Lexing, objects, properties, lists, literals, `{{ }}` expressions | Implemented syntax |
+| [expressions.md](./expressions.md) | Expression entry points, grammar, precedence, semantics, compatibility | Draft specification |
 | [grammar.ebnf](./grammar.ebnf) / [grammar.peg](./grammar.peg) | Formal grammar | Maintained with the implementation |
 | [namespace.md](./namespace.md) | Namespaces in type names (`System.String`) | Syntax implemented; compiler conversion needs work |
 | [builtin-objects.md](./builtin-objects.md) | Core objects, data model, commands, events, built-in functions | Runtime reference |
@@ -25,7 +26,9 @@ currently written in Chinese; this README is the English entry point.
 ## Reading order
 
 1. Read `language-spec.md` to learn objects, properties, and values.
-2. Read `builtin-objects.md`, `query-objects.md`, and `ui-objects.md` to learn
+2. Read `expressions.md` to understand `{{ ... }}`, legacy string expression
+   slots, and templates.
+3. Read `builtin-objects.md`, `query-objects.md`, and `ui-objects.md` to learn
    what default objects such as `Page`, `Modal`, `Query`, `Foreach`,
    `UpdateObject`, `Column`, and `Button` do.
 
@@ -36,8 +39,9 @@ currently written in Chinese; this README is the English entry point.
 - **Runtime objects** (`Page`, `Modal`, `Action`, `ObjectMeta`, etc.) are
   interpreted by HighOrder. Type names are usually converted from PascalCase to
   kebab-case, e.g. `ObjectMeta` → `object-meta`.
-- **Expressions** live inside `{{ ... }}`. They are pure computations and do not
-  contain statements.
+- **Expressions** live inside `{{ ... }}`. This is the only canonical expression
+  syntax; they are pure computations and do not contain statements. `Expr` and
+  `Format` are retained built-in objects (expression node and template).
 - **Logic and flow** are currently expressed with existing objects such as
   `Action`, `DataProcess`, `events`, and `hooks`. A function/script design is
   still in progress and is not part of this revision.
@@ -54,5 +58,5 @@ Migrated from `highorder-legacy/docs/docs/hola`:
 - `NAMESPACE_FEATURE.md`: migrated as `namespace.md`;
 - `examples/*.hola`: migrated as-is.
 
-`builtin-objects.md`, `query-objects.md`, and `ui-objects.md` are new reference
-documents. `README.md` is the Chinese version of this file.
+`expressions.md`, `builtin-objects.md`, `query-objects.md`, and `ui-objects.md`
+are new reference documents. `README.md` is the Chinese version of this file.

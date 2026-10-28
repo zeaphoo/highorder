@@ -1,7 +1,8 @@
 # Hola 语言规范
 
 > 本文描述 `.hola` 文件的结构、词法和当前已实现的表达式语法。
-> 内置对象和运行时语义见 [builtin-objects.md](./builtin-objects.md)。
+> 表达式规范见 [expressions.md](./expressions.md)；内置对象和运行时语义见
+> [builtin-objects.md](./builtin-objects.md)。
 >
 > 形式化语法见 [grammar.ebnf](./grammar.ebnf) 和 [grammar.peg](./grammar.peg)。
 
@@ -217,7 +218,7 @@ with_holes: [1, , 3]
 
 ## 6. 表达式
 
-表达式只出现在 `{{ ... }}` 中，用于属性值：
+Hola 的**唯一规范表达式入口**是 `{{ ... }}`：
 
 ```hola
 PlainText {
@@ -226,7 +227,21 @@ PlainText {
 }
 ```
 
-当前实现支持：
+需要先区分四种写法：
+
+| 写法 | 含义 |
+|---|---|
+| `"1 + 2"` | 字符串字面量，不是表达式 |
+| `{{ 1 + 2 }}` | 表达式块，编译期解析 |
+| `Expr { expr: "1 + 2" }` | 保留的内置表达式对象，特殊场景使用 |
+| `Format { format: "{user.name}" }` | 保留的模板对象，不是表达式 |
+
+`Query.filter`、`Property.formula`、`hooks[].condition`、`ConditionCheck.condition`
+是历史兼容槽位，需要按兼容模式解析。`Expr` 是保留的内置对象，常规代码仍应
+直接使用 `{{ ... }}`。`filter` / `formula` / `condition` 的普通字符串属性本身
+不会自动求值。
+
+当前 Rust 解析器支持：
 
 - 字面量：字符串、数字、布尔、`null`、颜色、列表；
 - 变量：`user`、`it`、`meta`、`locals`、`field` 等（由上下文提供）；
@@ -240,21 +255,12 @@ PlainText {
 - 分组：`( ... )`；
 - 列表字面量：`[ ... ]`。
 
-示例：
+目标语法还包括 `%`、`**`、`in`、`and`/`or`/`not`、`??`、`?.`、`?:`、
+切片和对象字面量。完整语法、优先级、求值语义和兼容规则见
+[expressions.md](./expressions.md)。
 
-```hola
-Property {
-    name: "progress"
-    data_type: "number"
-    formula: "len(filter(meta.todos).done == true) * 100 / len(meta.todos)"
-}
-```
-
-> 语法文件中的 `%`、`**`、`in`、`and`/`or`/`not` 等属于目标语法，
-> 当前 Rust 解析器尚未全部实现。新增表达式能力时，应同步更新本文和语法文件。
-
-表达式是**纯计算**，不包含赋值、分支、循环或函数定义。流程控制对象化属于后续设计，
-尚未纳入本版规范。
+表达式是**纯计算**，不包含赋值、分支语句、循环或函数定义。流程控制对象化属于
+后续设计，尚未纳入本版规范。
 
 ## 7. 标识符、关键字与命名空间
 
